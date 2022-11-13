@@ -40,7 +40,8 @@ To build and run this app locally you will need a few things:
 ### Clone the repository
 
 ```bash
-git clone https://github.com/dhruvsaxena1998/node-express-typescript.git --branch <branch-name> <project-name>
+git clone https://github.com/aarav22/gbl-demo-backend.
+git --branch <branch-name> <project-name>
 ```
 
 ### Install dependencies

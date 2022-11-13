@@ -1,7 +1,7 @@
 {
-  "name": "node-express-typescript",
+  "name":"gbl-demo",
   "version": "1.0.0",
-  "description": "NodeJS, Express typescript template",
+  "description": "NodeJS, Express and Typescript backend for gbl-demo",
   "main": "build/app.js",
   "scripts": {
     "build": "tsc",
@@ -16,20 +16,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dhruvsaxena1998/node-express-typescript.git"
+    "url": "git+https://github.com/aarav22/gbl-demo-backend"
   },
   "keywords": [
     "node",
     "express",
-    "typescript",
-    "template"
+    "typescript"
   ],
-  "author": "dhruvsaxena1998",
+  "author": "aarav22",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dhruvsaxena1998/node-express-typescript/issues"
+    "url": "https://github.com/aarav22/gbl-demo-backend/issues"
   },
-  "homepage": "https://github.com/dhruvsaxena1998/node-express-typescript#readme",
+  "homepage": "https://github.com/aarav22/gbl-demo-backend#readme",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.10",
