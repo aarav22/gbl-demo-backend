@@ -42,7 +42,13 @@ const configs: IKnexConfig = {
   },
   production: {
     client: 'postgresql',
-    connection: env.string('DB_PROD_HOST', 'postgres://grirtfqvwkmlly:4c20e35489c7372dcad68a892231ec78e8f2ebb93303f8ac6b5ffa4ef55b006e@ec2-52-1-17-228.compute-1.amazonaws.com:5432/d92h8h1r7cbitg'),
+    connection: {
+      host: env.string('DB_PROD_HOST', 'localhost'),
+      port: env.number('DB_PROD_PORT', 5432),
+      database: env.string('DB_PROD_DATABASE', 'gbl'),
+      user: env.string('DB_PROD_USER', 'postgres'),
+      password: env.string('DB_PROD_PASS', 'admin'),
+    },
     pool: {
       min: 2,
       max: 10,
