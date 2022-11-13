@@ -21,184 +21,359 @@
     }
   ],
   "paths": {
-    "/data/get-all": {
-      "get": {
+    "/auth/login": {
+      "post": {
         "tags": [
-          "Data"
+          "auth"
         ],
-        "summary": "Get all data",
-        "description": "Get all data",
-        "operationId": "get-all",
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Data"
-                  }
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "identifier": {
+                  "example": "string"
+                },
+                "password": {
+                  "example": "string"
                 }
               }
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
     },
-    "/auth/login": {
+    "/auth/register": {
       "post": {
-        "tags": ["Users"],
-        "summary": "Logs in a user",
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/login-user"
+        "tags": [
+          "auth"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "string"
+                },
+                "password": {
+                  "example": "string"
+                },
+                "username": {
+                  "example": "string"
+                },
+                "name": {
+                  "example": "string"
+                },
+                "image": {
+                  "example": "string"
+                }
               }
             }
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/authenticated-user"
-                }
-              }
-            }
+            "description": "OK"
           },
           "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/error404"
-                }
-              }
-            }
+            "description": "Bad Request"
           }
         }
       }
-    }
-  },
-  "components": {
-    "schemas": {
-      "user": {
-        "type": "object",
-        "required": ["username", "email", "role"],
-        "properties": {
-          "user_id": {
-            "type": "integer",
-            "description": "Auto generated user id",
-            "default": 12
-          },
-          "role": {
-            "type": "string",
-            "description": "Role assigned to user, one of three [ADMINSTRATOR, AUTHENTICATED, PUBLIC]",
-            "default": "AUTHENTICATED"
-          },
-          "username": {
-            "type": "string",
-            "description": "Unique identifier",
-            "default": "admin"
-          },
-          "email": {
-            "type": "string",
-            "description": "Unique user email",
-            "default": "admin@template.io"
-          },
-          "name": {
-            "type": "string",
-            "default": "Admin"
-          },
-          "confirmed": {
-            "type": "boolean",
-            "default": true
-          },
-          "blocked": {
-            "type": "boolean",
-            "default": false
-          },
-          "image": {
-            "type": "string",
-            "description": "Profile image of user",
-            "default": "/uploads/admin-profile.png"
-          },
-          "created_at": {
-            "type": "string",
-            "default": "2021-06-14T13:13:20.504Z"
-          },
-          "updated_at": {
-            "type": "string",
-            "default": "2021-06-14T13:13:20.504Z"
-          }
-        }
-      },
-      "authenticated-user": {
-        "type": "object",
-        "required": ["jwt", "user"],
-        "properties": {
-          "token": {
-            "type": "string",
-            "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsInJvb...iwiZXhwIjoxNjI2MjcwNTIyfQ.7NqIvu9BKy3trafkaXcsxvi4sP6n31nRcoaoJ16ZbIM"
-          },
-          "user": {
-            "$ref": "#/components/schemas/user"
-          }
-        }
-      },
-      "login-user": {
-        "type": "object",
-        "required": ["identifier", "password"],
-        "properties": {
-          "identifier": {
-            "type": "string",
-            "description": "Email / Username",
-            "default": "admin@gbl.io"
-          },
-          "password": {
-            "type": "string",
-            "description": "Super secret password",
-            "default": "admin"
-          }
-        }
-      },
-      "error404": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "path": {
-            "type": "array",
-            "items": {
+    },
+    "/users/me": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "description": "Get details of the current user",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
               "type": "string"
-            },
-            "default": [""]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           },
-          "type": {
-            "type": "string",
-            "default": "any.required"
-          },
-          "context": {
-            "type": "object",
-            "properties": {
-              "label": {
-                "type": "string"
-              },
-              "key": {
-                "type": "string"
-              }
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/users/": {
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "description": "Update the current user",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
             }
           },
-          "level": {
-            "type": "string",
-            "default": "error"
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "string"
+                },
+                "image": {
+                  "example": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/data/get-all": {
+      "get": {
+        "tags": [
+          "data"
+        ],
+        "description": "Get all data, use query unread and closed to filter",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "unread",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "closed",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/data/get-one": {
+      "get": {
+        "tags": [
+          "data"
+        ],
+        "description": "Get data for a specific id",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/data/create": {
+      "post": {
+        "tags": [
+          "data"
+        ],
+        "description": "Create data but only if the user is Admin",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "branch": {
+                  "example": "Delhi"
+                },
+                "reporting_method": {
+                  "example": "Email"
+                },
+                "date": {
+                  "example": "2021-12-12"
+                },
+                "time": {
+                  "example": "12:12"
+                },
+                "category": {
+                  "example": "General"
+                },
+                "sub_category": {
+                  "example": "Complaints"
+                },
+                "priority": {
+                  "example": "High"
+                },
+                "nature": {
+                  "example": "Health"
+                },
+                "case_mgr": {
+                  "example": "Daryl"
+                },
+                "case_reporter": {
+                  "example": "Tanner"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/data/update": {
+      "put": {
+        "tags": [
+          "data"
+        ],
+        "description": "Update data but only if the user is Admin",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "case_id": {
+                  "example": "any"
+                },
+                "branch": {
+                  "example": "Delhi"
+                },
+                "reporting_method": {
+                  "example": "Email"
+                },
+                "date": {
+                  "example": "2021-12-12"
+                },
+                "time": {
+                  "example": "12:12"
+                },
+                "category": {
+                  "example": "General"
+                },
+                "sub_category": {
+                  "example": "Complaints"
+                },
+                "priority": {
+                  "example": "High"
+                },
+                "nature": {
+                  "example": "Health"
+                },
+                "case_mgr": {
+                  "example": "Daryl"
+                },
+                "case_reporter": {
+                  "example": "Tanner"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/data/delete": {
+      "delete": {
+        "tags": [
+          "data"
+        ],
+        "description": "Delete data but only if the user is Admin",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "case_id",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }

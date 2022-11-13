@@ -26,7 +26,8 @@ This is a demo for GBL
   - Pino Logger
   - ErrorHandler
 - Redis / Memory cache support
-- Swagger documentation
+- Swagger documentation (Do /api-docs to see the docs)
+- Deployed on Heroku (Note: While using Knex, heroku run knex --knexfile build/database/knexfile.js migrate:latest --app gbl-demo)
 
 ## Pre-reqs
 

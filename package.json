@@ -1,5 +1,5 @@
 {
-  "name":"gbl-demo",
+  "name": "gbl-demo",
   "version": "1.0.0",
   "description": "NodeJS, Express and Typescript backend for gbl-demo",
   "main": "build/app.js",
@@ -72,6 +72,7 @@
     "pino": "^6.11.3",
     "pino-pretty": "^5.0.2",
     "rate-limiter-flexible": "^2.2.2",
+    "swagger-autogen": "^2.22.0",
     "swagger-ui-express": "^4.1.6"
   }
 }
