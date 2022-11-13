@@ -11,17 +11,17 @@ export class DataService {
 
     public getAll = async (): Promise<DataData> => {
         const data = await this._repository.find();
-        return sanitizeEntity(data, 'data') as DataData;
+        return data;
     };
 
     public getAllNewUnread = async (): Promise<DataData> => {
         const data = await this._repository.findNewUnread();
-        return sanitizeEntity(data, 'data') as DataData;
+        return data;
     };
 
     public getAllClosed = async (): Promise<DataData> => {
         const data = await this._repository.findClosed();
-        return sanitizeEntity(data, 'data') as DataData;
+        return data;
     };
 
     public create = async (dto: DataCreateDto): Promise<DataData> => {
