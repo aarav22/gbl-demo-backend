@@ -5,7 +5,6 @@ import { controller as DataController } from '../controllers/Data.controller';
 
 // Middlewares
 import { Authorize } from '../middlewares/auth';
-import { RateLimiter } from '../middlewares/rate-limiter';
 import { UpdateValidator, CreateValidator } from '../middlewares/validators/Data.validator';
 
 // Types
