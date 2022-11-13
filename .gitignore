@@ -1,0 +1,19 @@
+# Log
+*.log
+
+# Environment
+*.env
+
+# Test-Coverage files
+coverage/
+
+# Dependency directories
+node_modules
+
+# Build files
+build/
+dist/
+
+# Editor files
+.vscode
+.idea
