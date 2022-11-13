@@ -11,20 +11,21 @@ import { UpdateValidator, CreateValidator } from '../middlewares/validators/Data
 // Types
 import { ROLE } from '../@types';
 
-
+// Add RateLimiter() to the routes that you want to limit the requests.
+// Make sure Redis is live and running.
 /**
  * @route   /data/get-all
  * @method  GET
  * @description Returns user's object. Expects JWT token
  */
-DataRouter.get('/get-all', [Authorize([ROLE.ADMINSTRATOR, ROLE.AUTHENTICATED]), RateLimiter()], DataController.getAll);
+DataRouter.get('/get-all', [Authorize([ROLE.ADMINSTRATOR, ROLE.AUTHENTICATED])], DataController.getAll);
 
 /**
  * @route   /get-one
  * @method  GET
  * @description Returns Data by id. Expects JWT token
  */
-DataRouter.get('/get-one', [Authorize([ROLE.ADMINSTRATOR, ROLE.AUTHENTICATED]), RateLimiter()], DataController.getOne);
+DataRouter.get('/get-one', [Authorize([ROLE.ADMINSTRATOR, ROLE.AUTHENTICATED])], DataController.getOne);
 
 
 /**
