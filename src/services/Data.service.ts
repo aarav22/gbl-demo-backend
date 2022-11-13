@@ -4,22 +4,22 @@ import { DataRepository, repository } from '../repositories/Data.repository';
 import { sanitizeEntity } from '../helpers/sanitize';
 
 // Types
-import { DataCreateDto, DataUpdateDto, DataData } from '../@types/Data.types';
+import { DataCreateDto, DataUpdateDto, DataData, DataDataArray } from '../@types/Data.types';
 
 export class DataService {
     constructor(private readonly _repository: DataRepository) { }
 
-    public getAll = async (): Promise<DataData> => {
+    public getAll = async (): Promise<any> => {
         const data = await this._repository.find();
         return data;
     };
 
-    public getAllNewUnread = async (): Promise<DataData> => {
+    public getAllNewUnread = async (): Promise<any> => {
         const data = await this._repository.findNewUnread();
         return data;
     };
 
-    public getAllClosed = async (): Promise<DataData> => {
+    public getAllClosed = async (): Promise<any> => {
         const data = await this._repository.findClosed();
         return data;
     };

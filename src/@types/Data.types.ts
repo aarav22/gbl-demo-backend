@@ -30,6 +30,11 @@ export interface DataData {
     updated_at: Date;
 }
 
+// interface for array of DataData
+export interface DataDataArray {
+    data: DataData[];
+}
+
 export interface DataUpdateDto {
     branch?: string;
     reporting_method?: string;

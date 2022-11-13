@@ -1,7 +1,7 @@
 import { database as _db } from '../database/db';
 
 // Types
-import { DataCreateDto, DataUpdateDto, DataData } from '../@types/Data.types';
+import { DataCreateDto, DataUpdateDto, DataData, DataDataArray } from '../@types/Data.types';
 export class DataRepository {
     public create = async (dto: DataCreateDto): Promise<DataData> => {
         // auto assign case_id
@@ -16,18 +16,19 @@ export class DataRepository {
         return data as DataData;
     };
 
-    public find = async (): Promise<DataData> => {
-        const [data] = await _db('data');
+    public find = async (): Promise<any> => {
+        // return all data
+        const data = await _db('data');
         return data;
     };
 
-    public findNewUnread = async (): Promise<DataData> => {
-        const [data] = await _db('data').where({ case_status: 'new' }).orWhere({ unread: true });
+    public findNewUnread = async (): Promise<any> => {
+        const data = await _db('data').where({ case_status: 'new' }).orWhere({ unread: true });
         return data;
     };
 
-    public findClosed = async (): Promise<DataData> => {
-        const [data] = await _db('data').where({ case_status: 'closed' });
+    public findClosed = async (): Promise<any> => {
+        const data = await _db('data').where({ case_status: 'closed' });
         return data;
     };
 
