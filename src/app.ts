@@ -32,7 +32,7 @@ app.use(Authenticate);
 
 // Routes
 app.get('/', (req: express.Request, res: express.Response) => {
-  return res.status(200).send({ message: 'HelloWorld' });
+  return res.status(200).send({ message: 'Welcome to the GBL Demo' });
 });
 app.use('/api', router);
 app.use('/public', express.static('public/'));
