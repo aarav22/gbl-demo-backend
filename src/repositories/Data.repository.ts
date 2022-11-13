@@ -18,17 +18,17 @@ export class DataRepository {
 
     public find = async (): Promise<DataData> => {
         const [data] = await _db('data');
-        return data as DataData;
+        return data;
     };
 
     public findNewUnread = async (): Promise<DataData> => {
         const [data] = await _db('data').where({ case_status: 'new' }).orWhere({ unread: true });
-        return data as DataData;
+        return data;
     };
 
     public findClosed = async (): Promise<DataData> => {
         const [data] = await _db('data').where({ case_status: 'closed' });
-        return data as DataData;
+        return data;
     };
 
     public findOneAndUpdate = async (case_id: number, body: DataUpdateDto): Promise<DataData> => {
