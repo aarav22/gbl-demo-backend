@@ -27,7 +27,8 @@ This is a demo for GBL
   - ErrorHandler
 - Redis / Memory cache support
 - Swagger documentation (Do /api-docs to see the docs)
-- Deployed on Heroku (Note: While using Knex, heroku run knex --knexfile build/database/knexfile.js migrate:latest --app gbl-demo)
+- Deployed on Heroku (Note: While using Knex, heroku run knex --knexfile build/database/knexfile.js migrate:latest --app gbl-demo
+Also, to fix the authentication issue: heroku config:set PGSSLMODE=no-verify --app gbl-demo       )
 
 ## Pre-reqs
 
